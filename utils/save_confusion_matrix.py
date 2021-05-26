@@ -6,7 +6,7 @@ from mlflow.tracking.client import MlflowClient
 from os.path import join
 from sklearn.metrics import confusion_matrix
 
-def save_confusion_matrix(labels, preds, classes, run_id, tmp_results_dir):
+def save_confusion_matrix(labels, preds, classes):
     mlflow_client = MlflowClient()
     img_name = 'confusion_matrix.jpg'
     # making confusion matrix
@@ -14,7 +14,7 @@ def save_confusion_matrix(labels, preds, classes, run_id, tmp_results_dir):
     label_name = list(range(len(classes)))
     conf_matrix = confusion_matrix(labels, preds, label_name, normalize='true')
     # plot and save
-    plt.figure()
+    fig_conf_matrix = plt.figure()
     plt.imshow(conf_matrix, cmap=plt.cm.Blues)
     plt.colorbar()
     tick_marks = np.arange(len(classes))
@@ -30,9 +30,5 @@ def save_confusion_matrix(labels, preds, classes, run_id, tmp_results_dir):
     plt.subplots_adjust(bottom=0.2)
     plt.xlabel('Pred Label')
     plt.ylabel('Ground Truth')
-    plt.savefig(join(tmp_results_dir, img_name))
-    mlflow_client.log_artifact(run_id, join(tmp_results_dir, img_name))
 
-
-
-
+    return fig_conf_matrix

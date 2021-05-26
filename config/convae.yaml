@@ -1,0 +1,5 @@
+TRAIN:
+  MODEL_TYPE: 'convae'
+  MOMENTUM: 0.9
+  NUM_EPOCHS: 300
+  OPTIMIZER_TYPE: 'sgd'
