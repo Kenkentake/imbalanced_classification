@@ -17,7 +17,7 @@ $ python train.py --cfg_file [cfg_file] --seed [seed] --run_name [run_name]
 # [seed] = int
 # [run_name] = str
 ```
-# Visualize Results
+## Visualize Results
 You can visualize results using tensorboard
 - learning curve
 - confusion matrix
